@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  volumes:
+  - name: config-volume
+    configMap:
+      name: my-config
+  containers:
+  - name: my-container
+    image: dockerhub_image
+    Ports:
+    - containerPort: 8080
+    volumeMounts:
+    - mountPath: /etc/config
+      name: config-volume
