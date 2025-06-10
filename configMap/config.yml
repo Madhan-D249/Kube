@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  database_url: "jdbc:mysql://example.com:3306/mydb"
+  database_user: "admin"
+  database_password: "password123"
