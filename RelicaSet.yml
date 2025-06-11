@@ -1,22 +1,21 @@
-apiVersion: apps/V1
+apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-   name: flip
+  name: myapp-replicaset
+  labels:
+    app: myapp
 spec:
-  replicas: 2
-  selectors:
-    matchExpressions:
-      - {key: myname , operator: In, values: [signup , login , logout]}
-      - {key: env, operator: NotIn, values: [dev]}
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
   template:
     metadata:
-    name: max 
-    labels:
-      myname: login
+      labels:
+        app: myapp
     spec:
-     containers:
-      - name: c1  
-        image: ubuntu
-        command: ["/bin/bash", "-c", "while true: do echo login maxxy: sleep 3; done"]
-
-
+      containers:
+      - name: myapp-container
+        image: nginx
+        ports:
+        - containerPort: 80
